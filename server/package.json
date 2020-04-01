@@ -1,0 +1,16 @@
+{
+  "name": "lucent-server",
+  "version": "1.0.0",
+  "repository": "git@github.com:hannahmkim/lucent.git",
+  "author": "Hannah Kim <hkim@rmn.com>",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "http": "^0.0.1-security",
+    "ws": "^7.2.3"
+  }
+}
