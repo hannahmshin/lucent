@@ -4,16 +4,29 @@ import { w3cwebsocket as W3CWebSocket } from "websocket";
 import logo from './logo.svg';
 import './App.css';
 
-const client = new W3CWebSocket('ws://127.0.0.1:8000');
+const client = new W3CWebSocket('ws://localhost:8999');
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      text: 'Hello World!'
+    };
+  }
+
   componentWillMount() {
     client.onopen = () => {
-      console.log('WebSocket Client Connected');
+      console.log('client connected');
     };
+
     client.onmessage = (message) => {
-      console.log(message);
+      console.log(`data is ${message.data}`);
+      this.setState({ text: message.data })
     };
+
+    client.onclose = () => {
+      console.log('client disconnected')
+    }
   }
 
   render() {
@@ -22,16 +35,8 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>
-            Edit <code>src/App.js</code> and save to reload.
-        </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-        </a>
+            {this.state.text}
+          </p>
         </header>
       </div>
     );
