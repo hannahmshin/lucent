@@ -16,8 +16,10 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: 'Welcome to Lucent'
-    };
+      data: {
+        color: 'blue'
+      }
+    }
   }
 
   componentWillMount() {
@@ -26,8 +28,8 @@ class App extends Component {
     };
 
     client.onmessage = (message) => {
-      console.log(`data is ${message.data}`);
-      this.setState({ text: message.data })
+      var data = JSON.parse(message.data)
+      this.setState({ data })
     };
 
     client.onclose = () => {
@@ -41,7 +43,11 @@ class App extends Component {
         <div className="App">
           <header className="App-header">
             <p>
-              {this.state.text}
+              Welcome to Lucent
+            </p>
+
+            <p>
+              {this.state.data.color}
             </p>
           </header>
         </div>
