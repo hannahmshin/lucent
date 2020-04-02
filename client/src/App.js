@@ -6,6 +6,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import Preview from "./components/Preview";
 
 import './App.css';
 
@@ -120,14 +121,6 @@ function Settings() {
   return (
     <div>
       <h2>Settings</h2>
-    </div>
-  );
-}
-
-function Preview() {
-  return (
-    <div>
-      <h2>Preview</h2>
     </div>
   );
 }
