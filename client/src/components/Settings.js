@@ -1,7 +1,8 @@
 import React from 'react';
 
-function Settings() {
+function Settings(props) {
   let lightSpeed = 2;
+  const {color, size} = props.state
 
   const increaseSpeed = () => {
     const lightElem = document.getElementById("elem");
@@ -55,7 +56,7 @@ function Settings() {
 
       <div className="container">
         <div className="path">
-          <span id="elem" className="shape trail"></span>
+          <span id="elem" className="shape trail" style={{backgroundColor: color}}></span>
         </div>
       </div>
     </section>
