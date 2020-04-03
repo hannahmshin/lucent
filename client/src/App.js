@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import { w3cwebsocket as W3CWebSocket } from "websocket";
 import {
   BrowserRouter as Router,
@@ -6,113 +6,105 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import Preview from "./components/Preview";
+import Settings from "./components/Settings";
 
 import './App.css';
 
 const client = new W3CWebSocket('ws://localhost:8999');
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: {
-        color: 'blue',
-        size: 4
-      }
-    }
+const App  = () => {
+  const initialState = {
+    color: 'blue',
+    size: 4
+  };
+  const [state, setState] = useState(initialState);
+
+  client.onopen = () => {
+    console.log('client connected');
+  };
+
+  client.onmessage = (message) => {
+    var data = JSON.parse(message.data)
+
+    setState(prevState => {
+      return {...prevState, ...data};
+    })
+  };
+
+  client.onclose = () => {
+    console.log('client disconnected')
   }
 
-  componentWillMount() {
-    client.onopen = () => {
-      console.log('client connected');
-    };
-
-    client.onmessage = (message) => {
-      var data = JSON.parse(message.data)
-      this.setState({ data })
-    };
-
-    client.onclose = () => {
-      console.log('client disconnected')
-    }
+  const updateServer = (update) => {
+    client.send(JSON.stringify(update));
   }
 
-  updateServer(update) {
-    var newState = Object.assign(this.state.data, update)
-    client.send(JSON.stringify(newState));
-  }
+  return (
+    <Router>
+      <div className="App">
+        <section className="top-header"></section>
+        <header className="App-header">
+          <p>
+            Lucent
+          </p>
 
-  setColor = () => this.updateServer({ color: "newColor" })
-  setSize = () => this.updateServer({ size: 5 })
+          <p>
+            Color: {state.color}
+          </p>
 
-  render() {
-    return (
-      <Router>
-        <div className="App">
-          <header className="App-header">
-            <p>
-              Welcome to Lucent
-            </p>
+          <p>
+            Size: {state.size}
+          </p>
 
-            <p>
-              Color: {this.state.data.color}
-            </p>
+          <button value="red" onClick={e => updateServer({ color:  e.target.value})}>change color</button>
+          <button onClick={() => updateServer({ size: state.size + 1})}>change size</button>
 
-            <p>
-              Size: {this.state.data.size}
-            </p>
-
-            <button value="red" onClick={e => this.setColor(e.target.value)}>change color</button>
-            <button onClick={() => this.setSize(this.state.data.size + 1)}>change size</button>
-
-          </header>
-        </div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Login</Link>
-            </li>
-            <li>
-              <Link to="/dashboard">Dashboard</Link>
-            </li>
-            <li>
-              <Link to="/clients">Clients</Link>
-            </li>
-            <li>
-              <Link to="/settings">Settings</Link>
-            </li>
-            <li>
-              <Link to="/preview">Preview</Link>
-            </li>
-            <li>
-              <Link to="/share">Share</Link>
-            </li>
-          </ul>
-        </nav>
-        <Switch>
-          <Route exact path="/">
-            <Login />
-          </Route>
-          <Route path="/dashboard">
-            <Dashboard />
-          </Route>
-          <Route path="/clients">
-            <Clients />
-          </Route>
-          <Route exact path="/settings">
-            <Settings />
-          </Route>
-          <Route path="/preview">
-            <Preview />
-          </Route>
-          <Route path="/share">
-            <Share />
-          </Route>
-        </Switch>
-      </Router>
-    );
-  }
+        </header>
+      </div>
+      <nav>
+        <ul>
+          <li>
+            <Link to="/">Login</Link>
+          </li>
+          <li>
+            <Link to="/dashboard">Dashboard</Link>
+          </li>
+          <li>
+            <Link to="/clients">Clients</Link>
+          </li>
+          <li>
+            <Link to="/settings">Settings</Link>
+          </li>
+          <li>
+            <Link to="/preview">Preview</Link>
+          </li>
+          <li>
+            <Link to="/share">Share</Link>
+          </li>
+        </ul>
+      </nav>
+      <Switch>
+        <Route exact path="/">
+          <Login />
+        </Route>
+        <Route path="/dashboard">
+          <Dashboard />
+        </Route>
+        <Route path="/clients">
+          <Clients />
+        </Route>
+        <Route exact path="/settings">
+          <Settings state={state}  />
+        </Route>
+        <Route path="/preview">
+          <Preview />
+        </Route>
+        <Route path="/share">
+          <Share />
+        </Route>
+      </Switch>
+    </Router>
+  );
 }
 
 
@@ -140,10 +132,10 @@ function Clients() {
   );
 }
 
-function Settings() {
+function Preview() {
   return (
     <div>
-      <h2>Settings</h2>
+      <h2>Preview</h2>
     </div>
   );
 }

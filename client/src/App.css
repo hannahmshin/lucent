@@ -5,12 +5,24 @@ body, html {
 	box-sizing: border-box;
   color: #d8d8d8;
   font-family: "Roboto", sans-serif;
+  box-sizing: border-box;
 }
-
-
 
 a {
   color: #d8d8d8;
+}
+
+h1, h2, h3, h4 {
+  font-weight: normal;
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+
+h3 {
+  font-size: 16px;
 }
 
 .App {
@@ -36,6 +48,14 @@ a {
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+
+  height: 64px;
+  box-shadow: 0 0 4px 0 rgba(0,0,0,0.12), 0 4px 4px 0 rgba(0,0,0,0.24);
+}
+
+.top-header {
+  background-color: #000;
+  height: 24px;
 }
 
 .App-link {
@@ -105,3 +125,24 @@ nav button {
   margin-right: 10px;
 }
 
+.app-bar-bg {
+}
+
+#settings {
+  padding: 0;
+}
+
+#settings-configure {
+  background-color: #262626;
+  padding: 26px;
+}
+
+.shape-circle, .shape-square {
+  background-color: #fff;
+  width: 22px;
+  height: 22px;
+}
+
+.shape-circle {
+  border-radius: 22px;
+}
