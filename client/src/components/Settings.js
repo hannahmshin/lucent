@@ -2,7 +2,7 @@ import React from 'react';
 
 function Settings(props) {
   let lightSpeed = 2;
-  const {color, size} = props
+  const {color, size} = props.state
 
   const increaseSpeed = () => {
     const lightElem = document.getElementById("elem");

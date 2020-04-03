@@ -94,7 +94,7 @@ const App  = () => {
           <Clients />
         </Route>
         <Route exact path="/settings">
-          <Settings color={state.color} size={state.size} />
+          <Settings state={state}  />
         </Route>
         <Route path="/preview">
           <Preview />
