@@ -43,7 +43,7 @@ class App extends Component {
     client.send(JSON.stringify(newState));
   }
 
-  setColor = () => this.updateServer({ color: "newColor" })
+  setColor = () => this.updateServer({ color: "red" })
   setSize = () => this.updateServer({ size: 5 })
 
   render() {
@@ -102,7 +102,7 @@ class App extends Component {
             <Clients />
           </Route>
           <Route exact path="/settings">
-            <Settings />
+            <Settings color={this.state.data.color} size={this.state.data.size} />
           </Route>
           <Route path="/preview">
             <Preview />
