@@ -6,7 +6,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import Preview from "./components/Preview";
+import Settings from "./components/Settings";
 
 import './App.css';
 
@@ -50,9 +50,10 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
+          <section className="top-header"></section>
           <header className="App-header">
             <p>
-              Welcome to Lucent
+              Lucent
             </p>
 
             <p>
@@ -140,10 +141,10 @@ function Clients() {
   );
 }
 
-function Settings() {
+function Preview() {
   return (
     <div>
-      <h2>Settings</h2>
+      <h2>Preview</h2>
     </div>
   );
 }
