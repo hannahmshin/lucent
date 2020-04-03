@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { w3cwebsocket as W3CWebSocket } from "websocket";
 import {
   BrowserRouter as Router,
@@ -16,8 +16,11 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: 'Welcome to Lucent'
-    };
+      data: {
+        color: 'blue',
+        size: 4
+      }
+    }
   }
 
   componentWillMount() {
@@ -26,8 +29,8 @@ class App extends Component {
     };
 
     client.onmessage = (message) => {
-      console.log(`data is ${message.data}`);
-      this.setState({ text: message.data })
+      var data = JSON.parse(message.data)
+      this.setState({ data })
     };
 
     client.onclose = () => {
@@ -35,14 +38,34 @@ class App extends Component {
     }
   }
 
+  updateServer(update) {
+    var newState = Object.assign(this.state.data, update)
+    client.send(JSON.stringify(newState));
+  }
+
+  setColor = () => this.updateServer({ color: "newColor" })
+  setSize = () => this.updateServer({ size: 5 })
+
   render() {
     return (
       <Router>
         <div className="App">
           <header className="App-header">
             <p>
-              {this.state.text}
+              Welcome to Lucent
             </p>
+
+            <p>
+              Color: {this.state.data.color}
+            </p>
+
+            <p>
+              Size: {this.state.data.size}
+            </p>
+
+            <button value="red" onClick={e => this.setColor(e.target.value)}>change color</button>
+            <button onClick={() => this.setSize(this.state.data.size + 1)}>change size</button>
+
           </header>
         </div>
         <nav>
