@@ -1,24 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './login.css';
 
-import Logo from '../Logo/Logo.js'
+import Logo from '../Logo.js'
 
-function Login() {
+function Login({ handleLogin }) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   return (
     <section class="container">
       <Logo />
-      <form id="login">
+      <form id="login" onSubmit={() => handleLogin(email, password)} >
         <input
           type="email"
           name="email"
           id="email"
           placeholder="Email address"
+          onChange={(e) => setEmail(e.target.value)}
         />
         <input
           type="password"
           name="password"
           id="password"
           placeholder="Password"
+          onChange={(e) => setPassword(e.target.value)}
         />
         <button type="submit" id="login-btn" class="login-btn">
           Login

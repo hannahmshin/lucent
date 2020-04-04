@@ -6,7 +6,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import Login from './components/Login/login';
+import Login from './components/UserPanel/Login';
 import Settings from "./components/Settings";
 import Share from './components/Share';
 import PatientPortal from './components/PatientPortal';
@@ -18,7 +18,8 @@ const client = new W3CWebSocket('ws://localhost:8999');
 const App = () => {
   const initialState = {
     color: 'white',
-    size: 4
+    size: 4,
+    isLoggedIn: false
   };
   const [state, setState] = useState(initialState);
 
@@ -26,11 +27,16 @@ const App = () => {
     console.log('client connected');
   };
 
-  client.onmessage = (message) => {
+  client.onmessage = async (message) => {
     console.log(`got message ${JSON.stringify(message.data)}`);
     var data = JSON.parse(message.data)
 
-    setState(prevState => ({ ...prevState, ...data }));
+    console.log(`old state: ${JSON.stringify(state)}`);
+    console.log(`data from server: ${JSON.stringify(data)}`);
+    var newState = { ...state, ...data };
+    console.log(`new state: ${JSON.stringify(newState)}`);
+
+    await setState(newState);
   };
 
   client.onclose = () => {
@@ -52,6 +58,15 @@ const App = () => {
 
   const getSession = (id) => {
     clientSend({ id }, "getSession")
+  }
+
+  // this doesn't do any password checking :P 
+  const login = (email, password) => {
+    clientSend({ email }, "login")
+  }
+
+  const register = (email) => {
+    clientSend({ email }, "register")
   }
 
   return (
@@ -79,9 +94,6 @@ const App = () => {
       <nav>
         <ul>
           <li>
-            <Link to="/login">Login</Link>
-          </li>
-          <li>
             <Link to="/dashboard">Dashboard</Link>
           </li>
           <li>
@@ -99,11 +111,8 @@ const App = () => {
         </ul>
       </nav>
       <Switch>
-        <Route exact path="/login">
-          <Login />
-        </Route>
-        <Route path="/dashboard">
-          <Dashboard />
+        <Route exact path="/dashboard">
+          {state.isLoggedIn ? <Dashboard /> : <Login handleLogin={login} handleRegister={register} />}
         </Route>
         <Route path="/clients">
           <Clients />

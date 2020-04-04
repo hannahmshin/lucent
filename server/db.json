@@ -1,7 +1,4 @@
 {
-  "posts": [],
-  "user": {},
-  "count": 0,
   "sessions": [
     {
       "id": "hi",
@@ -72,6 +69,32 @@
         "color": "blue",
         "size": 4
       }
+    }
+  ],
+  "users": [
+    {
+      "email": "test@test.com",
+      "patients": []
+    },
+    {
+      "email": "test1@test.com",
+      "patients": []
+    },
+    {
+      "email": "test1@test.com",
+      "patients": []
+    },
+    {
+      "email": "test1@test.com",
+      "patients": []
+    },
+    {
+      "email": "test2@test.com",
+      "patients": []
+    },
+    {
+      "email": "test1@test.com",
+      "patients": []
     }
   ]
 }

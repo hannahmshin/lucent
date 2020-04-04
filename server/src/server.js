@@ -10,22 +10,30 @@ const app = express()
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
 
-const { updateSettings, shareSession, getSession } = require('./util.js');
+const { updateSettings, shareSession, getSession, login, register } = require('./util.js');
 
-db.defaults({ sessions: [] })
+db.defaults({ sessions: [], users: [] })
   .write()
 
 wss.on('connection', (ws) => {
   ws.on('message', function incoming(msg) {
     const data = JSON.parse(msg);
+    const event = data.event;
 
-    if (data.event == "updateSettings") {
-      updateSettings(wss.clients, data);
-    } else if (data.event == "shareSession") {
+    const clients = wss.clients;
+
+    if (event == "updateSettings") {
+      updateSettings(clients, data);
+    } else if (event == "shareSession") {
       shareSession(db, data)
-    } else if (data.event == "getSession") {
-      getSession(wss.clients, db, data)
+    } else if (event == "getSession") {
+      getSession(clients, db, data)
+    } else if (event == "login") {
+      login(clients, db, data)
+    } else if (event == "register") {
+      register(clients, db, data)
     }
+
   });
 });
 
