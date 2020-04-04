@@ -10,7 +10,7 @@ import Login from './components/UserPanel/Login';
 import Settings from "./components/Settings";
 import Share from './components/Share';
 import PatientPortal from './components/PatientPortal';
-import Dashboard from './components/CounselorDashboard/Dashboard';
+import Dashboard from './components/Dashboard/Dashboard';
 
 import './App.css';
 
@@ -22,7 +22,8 @@ const App = () => {
     size: 4,
     isLoggedIn: false,
     patients: [],
-    email: ''
+    email: null,
+    id: null
   };
   const [state, setState] = useState(initialState);
 
@@ -84,7 +85,7 @@ const App = () => {
       <nav>
         <ul>
           <li>
-            <Link to="/dashboard">Dashboard</Link>
+            <Link to="/">Dashboard</Link>
           </li>
           <li>
             <Link to="/clients">Clients</Link>
@@ -101,9 +102,9 @@ const App = () => {
         </ul>
       </nav>
       <Switch>
-        <Route exact path="/dashboard">
+        <Route exact path="/">
           {state.isLoggedIn
-            ? <Dashboard addPatient={addPatient} patients={state.patients} />
+            ? <Dashboard addPatient={addPatient} patients={state.patients} getSession={getSession} />
             : <Login handleLogin={login} handleRegister={register} />}
         </Route>
         <Route path="/clients">
@@ -112,9 +113,9 @@ const App = () => {
         <Route exact path="/settings">
           <Settings state={state} updateSettings={updateSettings} />
         </Route>
-        {/* <Route path="/preview">
+        <Route path="/preview">
           <Preview />
-        </Route> */}
+        </Route>
         <Route path="/share">
           <Share state={state} shareSession={shareSession} />
         </Route>
@@ -128,12 +129,16 @@ const App = () => {
   );
 }
 
-function Clients() {
-  return (
-    <div>
-      <h2>Clients</h2>
-    </div>
-  );
-}
+const Clients = () => (
+  <div>
+    Clients
+  </div>
+)
+
+const Preview = () => (
+  <div>
+    Preview
+  </div>
+)
 
 export default App;

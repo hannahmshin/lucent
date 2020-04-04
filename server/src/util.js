@@ -51,15 +51,21 @@ module.exports = {
   getSession: (clients, db, data) => {
     var state = db.get('sessions')
       .find({ id: data.id })
-      .value()
-      .state;
+      .value();
 
-    publish(clients, state)
+    if (!state) {
+      return;
+    }
+
+    publish(clients, { ...state, id: data.id })
   },
   login: (clients, db, data) => {
     let user = db.get('users')
       .find({ email: data.email })
       .value();
+
+    console.log(data.email);
+    console.log(user);
 
     if (!user) {
       publish(clients, { isLoggedIn: false })
@@ -84,7 +90,7 @@ module.exports = {
       .get('patients')
       .value();
 
-    patients.push({ firstName: data.firstName, lastInitial: data.lastInitial, sessionId });
+    patients.push({ firstName: data.firstName, lastInitial: data.lastInitial, id: sessionId });
 
     db.get('users')
       .find({ email: data.email })

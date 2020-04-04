@@ -1,3 +1,9 @@
+:root {
+  --main-text-color: #d8d8d8;
+  --main-bg-color: #303030;
+  --highight-color:  #262626;;
+}
+
 body, html {
 	background-color: #303030;
 	height: 100%;

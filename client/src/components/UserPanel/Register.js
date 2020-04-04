@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './login.css';
 
-import Logo from '../Logo.js'
+import Logo from '../Logo/Logo.js'
 
 function Login({ handleLogin }) {
   const [email, setEmail] = useState('');

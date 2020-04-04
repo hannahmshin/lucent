@@ -1,100 +1,25 @@
 {
-  "sessions": [
-    {
-      "id": "hi",
-      "state": {
-        "color": "red",
-        "size": 345
-      }
-    },
-    {
-      "id": "3Ucpv9LIY",
-      "state": {
-        "color": "red",
-        "size": 345
-      }
-    },
-    {
-      "id": "bjdn1O5f-",
-      "state": {
-        "color": "blue",
-        "size": 4
-      }
-    },
-    {
-      "id": "xOno9hLCN",
-      "state": {
-        "color": "red",
-        "size": 4
-      }
-    },
-    {
-      "id": "ATITeoMtO",
-      "state": {
-        "color": "blue",
-        "size": 4
-      }
-    },
-    {
-      "id": "OViIMS0Zz",
-      "state": {
-        "color": "blue",
-        "size": 4
-      }
-    },
-    {
-      "id": "fVniqpWkR",
-      "state": {
-        "color": "blue",
-        "size": 4
-      }
-    },
-    {
-      "id": "YLDG0CS25",
-      "state": {
-        "color": "blue",
-        "size": 4
-      }
-    },
-    {
-      "id": "HhzeYRoLM",
-      "state": {
-        "color": "blue",
-        "size": 4
-      }
-    },
-    {
-      "id": "nEWil7w8A",
-      "state": {
-        "color": "blue",
-        "size": 4
-      }
-    }
-  ],
+  "sessions": [],
   "users": [
     {
-      "email": "test@test.com",
-      "patients": []
-    },
-    {
-      "email": "test1@test.com",
-      "patients": []
-    },
-    {
-      "email": "test1@test.com",
-      "patients": []
-    },
-    {
-      "email": "test1@test.com",
-      "patients": []
-    },
-    {
-      "email": "test2@test.com",
-      "patients": []
-    },
-    {
-      "email": "test1@test.com",
-      "patients": []
+      "email": "james@faithtech.com",
+      "patients": [
+        {
+          "firstName": "Nick",
+          "lastInitial": "S",
+          "id": "gBQm0o5tf"
+        },
+        {
+          "firstName": "Marc",
+          "lastInitial": "K",
+          "id": "TrdS2eKV1"
+        },
+        {
+          "firstName": "Ideshini",
+          "lastInitial": "N",
+          "id": "gUCOZRQud"
+        }
+      ]
     }
   ]
 }

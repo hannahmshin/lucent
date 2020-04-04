@@ -7,13 +7,6 @@ body {
   color: var(--main-text-color);
 }
 
-.logo {
-  margin: 142px auto 71px auto;
-
-  height: 50px;
-  width: 200px;
-}
-
 .container {
   color: var(--main-text-color);
   display: flex;
@@ -66,4 +59,8 @@ input {
   font-size: 16px;
   margin: 12px auto;
   font-weight: lighter;
+}
+
+a.register {
+  text-decoration: underline;
 }
