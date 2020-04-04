@@ -32,8 +32,11 @@ wss.on('connection', (ws) => {
       login(clients, db, data)
     } else if (event == "register") {
       register(clients, db, data)
+    } else if (event == "savePatientSession") {
+      savePatientSession(db, data)
+    } else if (event == "getPatients") {
+      getPatients(clients, db, data)
     }
-
   });
 });
 
