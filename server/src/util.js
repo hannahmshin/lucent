@@ -14,13 +14,17 @@ const transporter = nodeMailer.createTransport({
   }
 });
 
+const publish = (clients, data) => {
+  clients.forEach(function each(client) {
+    if (client.readyState === WebSocket.OPEN) {
+      client.send(typeof data == String ? data : JSON.stringify(data));
+    }
+  });
+}
+
 module.exports = {
   updateSettings: (clients, data) => {
-    clients.forEach(function each(client) {
-      if (client.readyState === WebSocket.OPEN) {
-        client.send(JSON.stringify(data.update));
-      }
-    });
+    publish(clients, data.update);
   },
   shareSession: (db, data) => {
     let sessionId = shortid.generate();
@@ -50,10 +54,26 @@ module.exports = {
       .value()
       .state;
 
-    wss.clients.forEach(function each(client) {
-      if (client.readyState === WebSocket.OPEN) {
-        client.send(state ? JSON.stringify(state) : null);
-      }
-    });
+    publish(clients, state)
+  },
+  login: (clients, db, data) => {
+    let user = db.get('users')
+      .find({ email: data.email })
+      .value();
+
+    if (!user) {
+      publish(clients, { isLoggedIn: false })
+      return;
+    }
+
+    let patients = user.patients;
+    publish(clients, { patients: patients, isLoggedIn: true });
+  },
+  register: (clients, db, data) => {
+    db.get('users')
+      .push({ email: data.email, patients: [] })
+      .write();
+
+    publish(clients, { isLoggedIn: true })
   }
 }
