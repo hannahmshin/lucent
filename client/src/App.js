@@ -14,7 +14,7 @@ const client = new W3CWebSocket('ws://localhost:8999');
 
 const App  = () => {
   const initialState = {
-    color: 'blue',
+    color: 'white',
     size: 4
   };
   const [state, setState] = useState(initialState);

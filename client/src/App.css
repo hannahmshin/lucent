@@ -167,3 +167,36 @@ nav button {
   border-right: 12px solid transparent;
   border-bottom: 20px solid #fff;
 }
+
+#color .shape-circle {
+  margin-right: 10px;
+}
+
+
+.shape-circle.white {
+  background-color: #fff;
+}
+
+.shape-circle.grey {
+  background-color: #D8D8D8;
+}
+
+.shape-circle.blue {
+  background-color: #0076FF;
+}
+
+.shape-circle.yellow {
+  background-color: #FFC414;
+}
+
+.shape-circle.green {
+  background-color: #83FF5A;
+}
+
+.shape-circle.red {
+  background-color: #FF4848;
+}
+
+.shape-circle.black {
+  background-color: #000;
+}

@@ -57,8 +57,15 @@ function Settings(props) {
           <span className="shape-triangle"></span>
         </section>
 
-        <section className="configuration">
+        <section className="configuration" id="color">
           <h3>Color</h3>
+          <span className="shape-circle white"></span>
+          <span className="shape-circle grey"></span>
+          <span className="shape-circle blue"></span>
+          <span className="shape-circle yellow"></span>
+          <span className="shape-circle green"></span>
+          <span className="shape-circle red"></span>
+          <span className="shape-circle black"></span>
         </section>
 
         <section className="configuration">
