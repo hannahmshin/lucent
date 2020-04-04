@@ -65,6 +65,10 @@ nav button {
   width: 370px;
 }
 
+#settings #actions {
+  margin-top: 36px;
+}
+
 .shape-circle, .shape-square {
   background-color: #fff;
   width: 22px;

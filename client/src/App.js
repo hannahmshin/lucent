@@ -58,7 +58,7 @@ const App = () => {
     clientSend({ id }, "getSession")
   }
 
-  // this doesn't do any password checking :P 
+  // this doesn't do any password checking :P
   const login = (email, password) => {
     clientSend({ email }, "login")
   }
@@ -79,18 +79,6 @@ const App = () => {
           <p>
             Lucent
           </p>
-
-          <p>
-            Color: {state.color}
-          </p>
-
-          <p>
-            Size: {state.size}
-          </p>
-
-          <button value="red" onClick={e => updateSettings({ color: e.target.value })}>change color</button>
-          <button onClick={() => updateSettings({ size: state.size + 1 })}>change size</button>
-
         </header>
       </div>
       <nav>
@@ -122,7 +110,7 @@ const App = () => {
           <Clients />
         </Route>
         <Route exact path="/settings">
-          <Settings state={state} />
+          <Settings state={state} updateSettings={updateSettings} />
         </Route>
         {/* <Route path="/preview">
           <Preview />

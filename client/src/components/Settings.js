@@ -7,6 +7,7 @@ import './Slider.css';
 function Settings(props) {
   let lightSpeed = 2;
   const {color, size} = props.state
+  const { updateSettings } = props
 
   const increaseSpeed = () => {
     let lightElem = document.getElementById("elem");
@@ -37,7 +38,7 @@ function Settings(props) {
     lightElem.style.cssText = elemStyle.join(';')
   }
 
-  const onClickShape = (event) => {
+  const onClickConfigure = (event) => {
     const el = event.target;
 
     const shapes = el.parentNode.querySelectorAll('span')
@@ -49,6 +50,11 @@ function Settings(props) {
     changeShape(el.className)
   }
 
+  const onClickColor = (event, update) => {
+    onClickConfigure(event);
+    updateSettings(update);
+  }
+
   return (
     <section id="settings">
       <section id="settings-configure">
@@ -56,19 +62,19 @@ function Settings(props) {
 
         <section className="configuration" id="shape">
           <h3>Shape</h3>
-          <span className="shape-circle selected" onClick={onClickShape}></span>
-          <span className="shape-square" onClick={onClickShape}></span>
+          <span className="shape-circle selected" onClick={onClickConfigure}></span>
+          <span className="shape-square" onClick={onClickConfigure}></span>
           <span className="shape-triangle"></span>
         </section>
 
         <section className="configuration" id="color">
           <h3>Color</h3>
-          <span className="shape-circle white selected"></span>
+          <span className="shape-circle white selected" onClick={ e => { onClickColor(e, {color: '#fff'}) }}></span>
           <span className="shape-circle grey"></span>
           <span className="shape-circle blue"></span>
           <span className="shape-circle yellow"></span>
           <span className="shape-circle green"></span>
-          <span className="shape-circle red"></span>
+          <span className="shape-circle red" onClick={e => { onClickColor(e, {color: '#ff4848'}) }}></span>
           <span className="shape-circle black"></span>
         </section>
 
@@ -85,9 +91,6 @@ function Settings(props) {
         <section className="configuration">
           <h3>Speed</h3>
           <Slider />
-
-          <button id="increase-speed" onClick={increaseSpeed}> + Increase speed</button>
-          <button id="decrease-speed" onClick={decreaseSpeed}> - Decrease speed</button>
         </section>
 
         <section className="configuration" id="audio">
@@ -97,8 +100,11 @@ function Settings(props) {
             <label htmlFor="switch1" className="switch__label" role="presentation" aria-label="Toggle Audio"></label>
           </div>
         </section>
-      </section>
 
+        <section className="configuration" id="actions">
+          <button id="preview-btn" className="btn">Preview</button>
+        </section>
+      </section>
 
       <div className="container">
         <div className="path">

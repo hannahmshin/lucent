@@ -29,7 +29,7 @@ function Form({ handleSubmit, loginReq }) {
           placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit" id="login-btn" class="login-btn">
+        <button type="submit" id="login-btn" class="btn">
           {loginReq ? "Login" : "Register"}
         </button>
       </form>

@@ -26,6 +26,14 @@ h3 {
   margin-bottom: 15px;
 }
 
+.btn {
+  border-radius: 8px;
+  height: 35px;
+  width: 114px;
+  font-size: 18px;
+  background-color: #ffffff;
+}
+
 .App {
   text-align: center;
 }
