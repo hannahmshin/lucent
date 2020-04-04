@@ -67,7 +67,7 @@ module.exports = {
     }
 
     let patients = user.patients;
-    publish(clients, { patients: patients, isLoggedIn: true });
+    publish(clients, { patients: patients, isLoggedIn: true, email: data.email });
   },
   register: (clients, db, data) => {
     db.get('users')
@@ -75,5 +75,51 @@ module.exports = {
       .write();
 
     publish(clients, { isLoggedIn: true })
+  },
+  addPatient: (clients, db, data) => {
+    let sessionId = shortid.generate();
+
+    let patients = db.get('users')
+      .find({ email: data.email })
+      .get('patients')
+      .value();
+
+    patients.push({ firstName: data.firstName, lastInitial: data.lastInitial, sessionId });
+
+    db.get('users')
+      .find({ email: data.email })
+      .assign({ patients })
+      .write();
+
+    var newPatients = db.get('users')
+      .find({ email: data.email })
+      .get('patients')
+      .value();
+
+    publish(clients, { patients: newPatients })
   }
+
+  // savePatientSession: (db, data) => {
+  //   let sessionId = shortid.generate();
+
+  //   db.get('sessions')
+  //     .push({ id: sessionId, state: data.state })
+  //     .write()
+
+  //   // db.get('users')
+  //   //   .find({ email: data.email });
+  //   // push to their clients id.
+  // },
+  // getPatients: (clients, db, data) => {
+  //   let patients = db.get('users')
+  //     .find({ email: data.email })
+  //     .value()
+  //     .patients;
+
+  //   publish(clients, { patients })
+  // }
+
+
+
+
 }
