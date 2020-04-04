@@ -6,6 +6,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import Login from './components/Login/login';
 import Settings from "./components/Settings";
 import Share from './components/Share';
 import PatientPortal from './components/PatientPortal';
@@ -126,13 +127,6 @@ const App = () => {
   );
 }
 
-function Login() {
-  return (
-    <div>
-      <h2>Login</h2>
-    </div>
-  );
-}
 
 function Dashboard() {
   return (
