@@ -52,10 +52,10 @@
 
 .rangeslider__handle{
 	top:50%;
-	width:16px;
-	height:16px;
+	width:10px;
+	height:10px;
 	cursor:pointer;
-	margin-top:-8px;
+	margin-top:-5px;
 	background:white;
 	position:absolute;
 	background:#fff;

@@ -1,6 +1,7 @@
 import React from 'react';
 import Slider from './Slider.js';
 import { loadScript } from '../utils.js';
+import './Settings.css';
 import './Slider.css';
 
 function Settings(props) {
@@ -62,7 +63,7 @@ function Settings(props) {
 
         <section className="configuration" id="color">
           <h3>Color</h3>
-          <span className="shape-circle white"></span>
+          <span className="shape-circle white selected"></span>
           <span className="shape-circle grey"></span>
           <span className="shape-circle blue"></span>
           <span className="shape-circle yellow"></span>
@@ -73,6 +74,7 @@ function Settings(props) {
 
         <section className="configuration">
           <h3>Size</h3>
+          <Slider />
         </section>
 
         <section className="configuration">
@@ -82,13 +84,18 @@ function Settings(props) {
 
         <section className="configuration">
           <h3>Speed</h3>
+          <Slider />
 
           <button id="increase-speed" onClick={increaseSpeed}> + Increase speed</button>
           <button id="decrease-speed" onClick={decreaseSpeed}> - Decrease speed</button>
         </section>
 
-        <section className="configuration">
+        <section className="configuration" id="audio">
           <h3>Audio</h3>
+          <div className="switch">
+            <input type="checkbox" id="switch1" className="switch__input" />
+            <label htmlFor="switch1" className="switch__label" role="presentation" aria-label="Toggle Audio"></label>
+          </div>
         </section>
       </section>
 
