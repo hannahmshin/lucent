@@ -5,18 +5,45 @@ function Settings(props) {
   const {color, size} = props.state
 
   const increaseSpeed = () => {
-    const lightElem = document.getElementById("elem");
+    let lightElem = document.getElementById("elem");
     if (lightSpeed > 1) {
       lightSpeed -= 1;
     }
     lightElem.style = 'animation: ani ' + lightSpeed + 's infinite';
   };
 
-
   const decreaseSpeed = () => {
-    const lightElem = document.getElementById("elem");
+    let lightElem = document.getElementById("elem");
     lightSpeed += 1;
     lightElem.style = 'animation: ani ' + lightSpeed + 's infinite';
+  }
+
+  const changeShape = (className) => {
+    let lightElem = document.getElementById("elem");
+    let elemStyle = window.boom = lightElem.style.cssText.split(';');
+
+
+    if (className.indexOf('square') > -1) {
+      elemStyle.push('border-radius: 0');
+    }
+
+    if (className.indexOf('circle') > -1) {
+      elemStyle.push('border-radius: 80px');
+    }
+
+    lightElem.style.cssText = elemStyle.join(';')
+  }
+
+  const onClickShape = (event) => {
+    const el = event.target;
+
+    const shapes = el.parentNode.querySelectorAll('span')
+    shapes.forEach(item => {
+      item.classList.remove('selected')
+    });
+
+    el.classList.add('selected');
+    changeShape(el.className)
   }
 
   return (
@@ -24,9 +51,11 @@ function Settings(props) {
       <section id="settings-configure">
         <h2>Settings</h2>
 
-        <section className="configuration">
+        <section className="configuration" id="shape">
           <h3>Shape</h3>
-          <span className="shape-circle"></span>
+          <span className="shape-circle selected" onClick={onClickShape}></span>
+          <span className="shape-square" onClick={onClickShape}></span>
+          <span className="shape-triangle"></span>
         </section>
 
         <section className="configuration">
@@ -56,7 +85,7 @@ function Settings(props) {
 
       <div className="container">
         <div className="path">
-          <span id="elem" className="shape trail" style={{backgroundColor: color}}></span>
+          <span id="elem" className="shape circle trail" style={{backgroundColor: color}}></span>
         </div>
       </div>
     </section>
