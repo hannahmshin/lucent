@@ -4,8 +4,10 @@ const Slider = (props) => {
   let value = 10;
 
   return (
-    <div className="wrapper">
-      <input type="range" min="1" max="30" step="1" defaultValue={value} unit="" />
+    <div className="budget-wrap">
+      <div className="content">
+        <input type="range" min="1" max="100" defaultValue={value} />
+      </div>
     </div>
   )
 };

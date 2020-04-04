@@ -1,6 +1,7 @@
 import React from 'react';
 import Slider from './Slider.js';
 import { loadScript } from '../utils.js';
+import './Slider.css';
 
 function Settings(props) {
   let lightSpeed = 2;
