@@ -20,8 +20,7 @@ function Settings(props) {
 
   const changeShape = (className) => {
     let lightElem = document.getElementById("elem");
-    let elemStyle = window.boom = lightElem.style.cssText.split(';');
-
+    let elemStyle = lightElem.style.cssText.split(';');
 
     if (className.indexOf('square') > -1) {
       elemStyle.push('border-radius: 0');
