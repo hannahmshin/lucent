@@ -7,12 +7,14 @@ import {
   Link
 } from "react-router-dom";
 import Settings from "./components/Settings";
+import Share from './components/Share';
+import PatientPortal from './components/PatientPortal';
 
 import './App.css';
 
 const client = new W3CWebSocket('ws://localhost:8999');
 
-const App  = () => {
+const App = () => {
   const initialState = {
     color: 'blue',
     size: 4
@@ -24,19 +26,31 @@ const App  = () => {
   };
 
   client.onmessage = (message) => {
+    console.log(`got message ${JSON.stringify(message.data)}`);
     var data = JSON.parse(message.data)
 
-    setState(prevState => {
-      return {...prevState, ...data};
-    })
+    setState(prevState => ({ ...prevState, ...data }));
   };
 
   client.onclose = () => {
     console.log('client disconnected')
   }
 
-  const updateServer = (update) => {
-    client.send(JSON.stringify(update));
+  const clientSend = (data, event) => {
+    client.send(JSON.stringify({ ...data, event: event }));
+  }
+
+  const updateSettings = (update) => {
+    clientSend({ update }, "updateSettings")
+  }
+
+  const shareSession = (email) => {
+    //todo: some email validation
+    clientSend({ state, email }, "shareSession")
+  }
+
+  const getSession = (id) => {
+    clientSend({ id }, "getSession")
   }
 
   return (
@@ -56,15 +70,15 @@ const App  = () => {
             Size: {state.size}
           </p>
 
-          <button value="red" onClick={e => updateServer({ color:  e.target.value})}>change color</button>
-          <button onClick={() => updateServer({ size: state.size + 1})}>change size</button>
+          <button value="red" onClick={e => updateSettings({ color: e.target.value })}>change color</button>
+          <button onClick={() => updateSettings({ size: state.size + 1 })}>change size</button>
 
         </header>
       </div>
       <nav>
         <ul>
           <li>
-            <Link to="/">Login</Link>
+            <Link to="/login">Login</Link>
           </li>
           <li>
             <Link to="/dashboard">Dashboard</Link>
@@ -84,7 +98,7 @@ const App  = () => {
         </ul>
       </nav>
       <Switch>
-        <Route exact path="/">
+        <Route exact path="/login">
           <Login />
         </Route>
         <Route path="/dashboard">
@@ -94,19 +108,23 @@ const App  = () => {
           <Clients />
         </Route>
         <Route exact path="/settings">
-          <Settings state={state}  />
+          <Settings state={state} />
         </Route>
-        <Route path="/preview">
+        {/* <Route path="/preview">
           <Preview />
-        </Route>
+        </Route> */}
         <Route path="/share">
-          <Share />
+          <Share state={state} shareSession={shareSession} />
         </Route>
+
+        <Route path="/:id">
+          <PatientPortal getSession={getSession} />
+        </Route>
+
       </Switch>
     </Router>
   );
 }
-
 
 function Login() {
   return (
@@ -128,22 +146,6 @@ function Clients() {
   return (
     <div>
       <h2>Clients</h2>
-    </div>
-  );
-}
-
-function Preview() {
-  return (
-    <div>
-      <h2>Preview</h2>
-    </div>
-  );
-}
-
-function Share() {
-  return (
-    <div>
-      <h2>Share</h2>
     </div>
   );
 }
