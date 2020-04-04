@@ -14,7 +14,7 @@ import Dashboard from './components/CounselorDashboard/Dashboard';
 
 import './App.css';
 
-const client = new W3CWebSocket('ws://localhost:8999');
+const client = new W3CWebSocket('ws://lucent-emdr-api.herokuapp.com/');
 
 const App = () => {
   const initialState = {
