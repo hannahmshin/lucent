@@ -140,6 +140,7 @@ nav button {
 #settings-configure {
   background-color: #262626;
   padding: 26px;
+  width: 370px;
 }
 
 .shape-circle, .shape-square {

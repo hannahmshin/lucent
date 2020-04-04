@@ -1,4 +1,6 @@
 import React from 'react';
+import Slider from './Slider.js';
+import { loadScript } from '../utils.js';
 
 function Settings(props) {
   let lightSpeed = 2;
@@ -74,6 +76,7 @@ function Settings(props) {
 
         <section className="configuration">
           <h3>Distance</h3>
+          <Slider />
         </section>
 
         <section className="configuration">
@@ -94,6 +97,8 @@ function Settings(props) {
           <span id="elem" className="shape circle trail" style={{backgroundColor: color}}></span>
         </div>
       </div>
+
+    {loadScript("./SliderConfig.js")}
     </section>
   );
 }
