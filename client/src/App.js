@@ -10,6 +10,7 @@ import Login from './components/UserPanel/Login';
 import Settings from "./components/Settings";
 import Share from './components/Share';
 import PatientPortal from './components/PatientPortal';
+import Dashboard from './components/CounselorDashboard/Dashboard';
 
 import './App.css';
 
@@ -19,7 +20,9 @@ const App = () => {
   const initialState = {
     color: 'white',
     size: 4,
-    isLoggedIn: false
+    isLoggedIn: false,
+    patients: [],
+    email: ''
   };
   const [state, setState] = useState(initialState);
 
@@ -31,12 +34,7 @@ const App = () => {
     console.log(`got message ${JSON.stringify(message.data)}`);
     var data = JSON.parse(message.data)
 
-    console.log(`old state: ${JSON.stringify(state)}`);
-    console.log(`data from server: ${JSON.stringify(data)}`);
-    var newState = { ...state, ...data };
-    console.log(`new state: ${JSON.stringify(newState)}`);
-
-    await setState(newState);
+    await setState({ ...state, ...data });
   };
 
   client.onclose = () => {
@@ -67,6 +65,10 @@ const App = () => {
 
   const register = (email) => {
     clientSend({ email }, "register")
+  }
+
+  const addPatient = (firstName, lastInitial) => {
+    clientSend({ firstName, lastInitial, email: state.email }, "addPatient")
   }
 
   return (
@@ -112,7 +114,9 @@ const App = () => {
       </nav>
       <Switch>
         <Route exact path="/dashboard">
-          {state.isLoggedIn ? <Dashboard /> : <Login handleLogin={login} handleRegister={register} />}
+          {state.isLoggedIn
+            ? <Dashboard addPatient={addPatient} patients={state.patients} />
+            : <Login handleLogin={login} handleRegister={register} />}
         </Route>
         <Route path="/clients">
           <Clients />
@@ -133,15 +137,6 @@ const App = () => {
 
       </Switch>
     </Router>
-  );
-}
-
-
-function Dashboard() {
-  return (
-    <div>
-      <h2>Dashboard</h2>
-    </div>
   );
 }
 

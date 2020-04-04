@@ -17,11 +17,7 @@ const transporter = nodeMailer.createTransport({
 const publish = (clients, data) => {
   clients.forEach(function each(client) {
     if (client.readyState === WebSocket.OPEN) {
-<<<<<<< HEAD
       client.send(typeof data == String ? data : JSON.stringify(data));
-=======
-      client.send(typeof data == string ? data : JSON.stringify(data));
->>>>>>> d4b8e89... feat(Patients): add Patient server methods
     }
   });
 }
@@ -71,7 +67,7 @@ module.exports = {
     }
 
     let patients = user.patients;
-    publish(clients, { patients: patients, isLoggedIn: true });
+    publish(clients, { patients: patients, isLoggedIn: true, email: data.email });
   },
   register: (clients, db, data) => {
     db.get('users')
@@ -80,25 +76,48 @@ module.exports = {
 
     publish(clients, { isLoggedIn: true })
   },
-  savePatientSession: (db, data) => {
+  addPatient: (clients, db, data) => {
     let sessionId = shortid.generate();
 
-    db.get('sessions')
-      .push({ id: sessionId, state: data.state })
-      .write()
-
-    // db.get('users')
-    //   .find({ email: data.email });
-    // push to their clients id.
-  },
-  getPatients: (clients, db, data) => {
     let patients = db.get('users')
       .find({ email: data.email })
-      .value()
-      .patients;
+      .get('patients')
+      .value();
 
-    publish(clients, { patients })
+    patients.push({ firstName: data.firstName, lastInitial: data.lastInitial, sessionId });
+
+    db.get('users')
+      .find({ email: data.email })
+      .assign({ patients })
+      .write();
+
+    var newPatients = db.get('users')
+      .find({ email: data.email })
+      .get('patients')
+      .value();
+
+    publish(clients, { patients: newPatients })
   }
+
+  // savePatientSession: (db, data) => {
+  //   let sessionId = shortid.generate();
+
+  //   db.get('sessions')
+  //     .push({ id: sessionId, state: data.state })
+  //     .write()
+
+  //   // db.get('users')
+  //   //   .find({ email: data.email });
+  //   // push to their clients id.
+  // },
+  // getPatients: (clients, db, data) => {
+  //   let patients = db.get('users')
+  //     .find({ email: data.email })
+  //     .value()
+  //     .patients;
+
+  //   publish(clients, { patients })
+  // }
 
 
 

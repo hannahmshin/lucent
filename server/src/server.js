@@ -10,7 +10,7 @@ const app = express()
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
 
-const { updateSettings, shareSession, getSession, login, register } = require('./util.js');
+const { updateSettings, shareSession, getSession, login, register, addPatient } = require('./util.js');
 
 db.defaults({ sessions: [], users: [] })
   .write()
@@ -32,10 +32,8 @@ wss.on('connection', (ws) => {
       login(clients, db, data)
     } else if (event == "register") {
       register(clients, db, data)
-    } else if (event == "savePatientSession") {
-      savePatientSession(db, data)
-    } else if (event == "getPatients") {
-      getPatients(clients, db, data)
+    } else if (event == "addPatient") {
+      addPatient(clients, db, data)
     }
   });
 });
