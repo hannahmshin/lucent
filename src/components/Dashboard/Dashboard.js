@@ -30,12 +30,13 @@ function PatientList({ patients, setAdd, getSession }) {
   )
 }
 
-function AddPatient({ addPatient }) {
+function AddPatient({ addPatient, setAdd }) {
   const [firstName, setFirstName] = useState('');
   const [lastInitial, setLastInitial] = useState('');
 
   function onSubmit(e) {
     e.preventDefault();
+    setAdd(false)
     addPatient(firstName, lastInitial)
   }
 
@@ -54,7 +55,7 @@ function AddPatient({ addPatient }) {
           placeholder="Last Initial"
           onChange={(e) => setLastInitial(e.target.value)}
         />
-        <button id="create" type="submit">
+        <button id="create" type="submit" className="btn">
           Create
         </button>
       </form>
@@ -68,7 +69,7 @@ function Dashboard({ addPatient, patients, getSession }) {
   return (
     <>
       <AppHeader />
-        {add ? <AddPatient addPatient={addPatient} /> : <PatientList setAdd={() => setAdd(true)} patients={patients} getSession={getSession} />}
+      {add ? <AddPatient addPatient={addPatient} setAdd={() => setAdd(false)} /> : <PatientList setAdd={() => setAdd(true)} patients={patients} getSession={getSession} />}
     </>
   )
 }
