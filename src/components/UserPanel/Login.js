@@ -29,7 +29,7 @@ function Form({ handleSubmit, loginReq }) {
           placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit" id="login-btn" class="btn">
+        <button type="submit" id="login-btn" className="btn">
           {loginReq ? "Login" : "Register"}
         </button>
       </form>
@@ -43,17 +43,17 @@ function UserPanel({ handleLogin, handleRegister }) {
   let form = loginReq ? <Form handleSubmit={handleLogin} loginReq={loginReq} /> : <Form handleSubmit={handleRegister} loginReq={loginReq} />
 
   return (
-    <section class="container">
+    <section className="container">
       <Logo />
       {form}
       {loginReq
-        ? <p class="register">
+        ? <p className="register">
           Don't have an account?&nbsp;
-            <a class="register" onClick={() => setLoginReq(false)}>Register here</a>
+            <a className="register" onClick={() => setLoginReq(false)}>Register here</a>
         </p>
-        : <p class="register">
+        : <p className="register">
           Already have an account?&nbsp;
-            <a class="register" onClick={() => setLoginReq(true)}>Sign in Here</a>
+            <a className="register" onClick={() => setLoginReq(true)}>Sign in Here</a>
         </p>}
     </section>
   );

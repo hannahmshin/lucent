@@ -4,7 +4,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 import Login from './components/UserPanel/Login';
 import Settings from "./components/Settings";
@@ -74,33 +73,6 @@ const App = () => {
 
   return (
     <Router>
-      <div className="App">
-        <section className="top-header"></section>
-        <header className="App-header">
-          <p>
-            Lucent
-          </p>
-        </header>
-      </div>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Dashboard</Link>
-          </li>
-          <li>
-            <Link to="/clients">Clients</Link>
-          </li>
-          <li>
-            <Link to="/settings">Settings</Link>
-          </li>
-          <li>
-            <Link to="/preview">Preview</Link>
-          </li>
-          <li>
-            <Link to="/share">Share</Link>
-          </li>
-        </ul>
-      </nav>
       <Switch>
         <Route exact path="/">
           {state.isLoggedIn
