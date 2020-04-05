@@ -1,0 +1,60 @@
+.dashboard {
+  height: 550px;
+  background-color: var(--main-bg-color);
+  width: 350px;
+  margin: 130px auto;
+  border-radius: 8px;
+}
+
+.addPatient {
+  padding: 0 25px;
+  margin: 130px auto;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #222222;
+  width: 350px;
+  height: 230px;
+  justify-content: center;
+}
+
+.patientForm {
+  display: flex;
+  flex-direction: column;
+}
+
+#name {
+  width: 300px;
+  margin-bottom: 15px;
+}
+
+#create {
+  margin-top: 20px;
+}
+
+.addButtonContainer {
+  padding: 0 25px;
+  height: 95px;
+  background-color: rgb(34, 34, 34);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.patientContainer {
+  height: auto;
+  padding: 20px 25px;
+  text-align: left;
+}
+
+.patientHeader {
+  font-size: large;
+  font-weight: bold;
+}
+
+.patientName {
+  padding: 25px 10px;
+  text-transform: capitalize;
+}
