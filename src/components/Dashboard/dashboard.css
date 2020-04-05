@@ -1,8 +1,8 @@
 .dashboard {
   height: 550px;
   background-color: var(--main-bg-color);
-  width: 350px;
-  margin: 130px auto;
+  width: 413px;
+  margin: 102px auto;
   border-radius: 8px;
 }
 
@@ -34,7 +34,7 @@
 }
 
 .addButtonContainer {
-  padding: 0 25px;
+  padding: 30px;
   height: 95px;
   background-color: rgb(34, 34, 34);
   border-radius: 8px;
@@ -43,9 +43,14 @@
   justify-content: space-between;
 }
 
+.addButtonContainer h2 {
+  font-size: 22px;
+  margin-top: 28px;
+}
+
 .patientContainer {
   height: auto;
-  padding: 20px 25px;
+  padding: 30px;
   text-align: left;
 }
 
@@ -55,6 +60,17 @@
 }
 
 .patientName {
-  padding: 25px 10px;
+  padding: 15px 10px;
   text-transform: capitalize;
 }
+
+.patientName:first-child {
+  padding-top: 30px;
+}
+
+.patientName span {
+  display: block;
+  font-size: 14px;
+}
+
+
