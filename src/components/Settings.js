@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import Slider from './Slider.js';
 import { loadScript } from '../utils.js';
 import './Settings.css';
@@ -102,7 +103,9 @@ function Settings(props) {
         </section>
 
         <section className="configuration" id="actions">
-          <button id="preview-btn" className="btn">Preview</button>
+          <Link to="/preview">
+            <button id="preview-btn" className="btn">Preview</button>
+          </Link>
         </section>
       </section>
 
