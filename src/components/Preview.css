@@ -1,0 +1,8 @@
+#preview {
+  height: 100%;
+}
+
+#preview .container{
+  margin-top: 0;
+  height: 100%;
+}

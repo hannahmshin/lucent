@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import Login from './components/UserPanel/Login';
 import Settings from "./components/Settings";
+import Preview from "./components/Preview";
 import Share from './components/Share';
 import PatientPortal from './components/PatientPortal';
 import Dashboard from './components/Dashboard/Dashboard';
@@ -86,7 +87,7 @@ const App = () => {
           <Settings state={state} updateSettings={updateSettings} />
         </Route>
         <Route path="/preview">
-          <Preview />
+          <Preview state={state} updateSettings={updateSettings} />
         </Route>
         <Route path="/share">
           <Share state={state} shareSession={shareSession} />
@@ -104,12 +105,6 @@ const App = () => {
 const Clients = () => (
   <div>
     Clients
-  </div>
-)
-
-const Preview = () => (
-  <div>
-    Preview
   </div>
 )
 
