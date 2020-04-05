@@ -22,6 +22,7 @@
 .patientForm {
   display: flex;
   flex-direction: column;
+  align-items: center
 }
 
 #name {
@@ -68,9 +69,38 @@
   padding-top: 30px;
 }
 
+.patientName h3 {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
 .patientName span {
   display: block;
   font-size: 14px;
 }
 
+.dashboard-menu {
+  margin: 75px 0 0 20px;
+}
 
+.addButtonContainer-menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 15px -30px 0;
+}
+
+.addButtonContainer-menu h2 {
+  margin-bottom: 20px;
+}
+
+.patientList-menu h3 {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.patientList-menu span {
+  display: block;
+  font-size: 12px;
+}
