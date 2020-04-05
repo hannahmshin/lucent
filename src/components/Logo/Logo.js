@@ -5,7 +5,7 @@ import './logo.css'
 function Logo() {
   return (
     <div>
-      <img class="logo" src={logoUrl} alt="Logo" />
+      <img className="logo" src={logoUrl} alt="Logo" />
     </div>
   )
 }
