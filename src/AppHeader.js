@@ -1,7 +1,6 @@
 import React from 'react';
 import logoUrl from './static/logo-header.png';
-import profilePicUrl from './static/james-kelly.jpeg';
-import dotMenuUrl from './static/dots-menu.png';
+import profilePicUrl from './static/welcome-back-james.png';
 import './AppHeader.css';
 import './AppHeaderMenu.css';
 
@@ -26,11 +25,7 @@ const AppHeader = () => {
         </div>
         <img className="logo-header" src={logoUrl} alt="LUCENT logo" />
         <div id="profile">
-          <span id="name">
-            <span>Welcome back </span><span>James K</span>
-          </span>
           <img src={profilePicUrl} alt="James K" />
-          <img src={dotMenuUrl} alt="Profile menu" />
         </div>
         <section className="client-menu" id="client-menu"></section>
       </header>
