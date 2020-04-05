@@ -55,6 +55,7 @@ function UserPanel({ handleLogin, handleRegister }) {
           Already have an account?&nbsp;
             <a className="register" onClick={() => setLoginReq(true)}>Sign in Here</a>
         </p>}
+      <p class="note">(For demo, use email <italic>james@faithtech.com</italic> and any password)</p>
     </section>
   );
 }
