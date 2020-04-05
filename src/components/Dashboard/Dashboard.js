@@ -8,6 +8,7 @@ function Patient({ patient, getSession }) {
   return (
     <div className="patientName">
       <a onClick={() => getSession(patient.id)} >{patient.firstName} {patient.lastInitial}</a>
+      <span>Last updated 04/04/2020 | Last shared 04/01/2020</span>
     </div>
   )
 }
@@ -16,7 +17,7 @@ function PatientList({ patients, setAdd, getSession }) {
   return (
     <div className="dashboard">
       <div className="addButtonContainer">
-        <div className="createSession">Create Session</div>
+        <h2>Create Session</h2>
         <IoIosAdd onClick={setAdd} size={32} />
       </div>
       <div className="patientContainer">
