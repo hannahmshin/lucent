@@ -1,11 +1,13 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import AppHeader from "../AppHeader";
 import Slider from './Slider.js';
 import { loadScript } from '../utils.js';
 import './Settings.css';
 import './Slider.css';
 
-function Settings(props) {
+function SettingsMenu(props) {
+
   let lightSpeed = 2;
   const {color, size} = props.state
   const { updateSettings } = props
@@ -109,14 +111,23 @@ function Settings(props) {
         </section>
       </section>
 
+      {loadScript("./SliderConfig.js")}
+    </section>
+  );
+}
+
+function Settings(props) {
+  const {color, size} = props.state
+
+  return (
+    <>
+      <AppHeader  content={<SettingsMenu {...props}/>}/>
       <div className="container">
         <div className="path">
           <span id="elem" className="shape circle trail" style={{backgroundColor: color}}></span>
         </div>
       </div>
-
-    {loadScript("./SliderConfig.js")}
-    </section>
+    </>
   );
 }
 
