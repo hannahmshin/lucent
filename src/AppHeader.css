@@ -1,12 +1,13 @@
 .App-header {
   background-color: #212121;
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template: "leftHeader rightHeader";
+  /* flex-direction: row; */
   align-items: center;
-  justify-content: left;
+  /* justify-content: left; */
   font-size: calc(10px + 2vmin);
-  color: white;
-  height: 64px;
+  color: FFF;
+  height: 68px;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.12), 0 4px 4px 0 rgba(0, 0, 0, 0.24);
 }
 
@@ -15,6 +16,18 @@
   height: 24px;
 }
 
+.leftHeader {
+  grid-area: leftHeader;
+  display: flex;
+  align-items: center;
+}
+
+.rightHeader {
+  grid-area: rightHeader;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
 
 .logo-header {
   width: 100px;
@@ -35,7 +48,6 @@
   background-color: rgba(38, 38, 38, 1);
   z-index: -1;
   text-align: left;
-  z-index: -1;
 }
 
 #client-menu.change {
@@ -47,4 +59,42 @@
   position: absolute;
   right: 24px;
   top: 30px;
+}
+
+.userContainer {
+  display: inline-block;
+  padding-right: 20px;
+}
+
+.userCircle {
+  -webkit-background-size: 32px 32px;
+  background-size: 32px 32px;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0;
+  overflow: hidden;
+  height: 49px;
+  width: 49px;
+  background-color: white;
+}
+
+.threeDot_container {
+  height: 16px;
+  width: 4px;
+  cursor: pointer;
+  display: inline-block;
+  padding-right: 24px;
+}
+
+.threeDot_container span {
+  background: white;
+  border: none;
+  height: 4px;
+  width: 4px;
+  position: relative;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-bottom: 2px;
+  display: block;
 }

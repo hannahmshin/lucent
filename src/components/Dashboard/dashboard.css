@@ -22,7 +22,7 @@
 .patientForm {
   display: flex;
   flex-direction: column;
-  align-items: center
+  align-items: center;
 }
 
 #name {
@@ -103,4 +103,22 @@
 .patientList-menu span {
   display: block;
   font-size: 12px;
+}
+
+#createClientBtn {
+  font-size: 14px;
+  margin-left: 125px;
+}
+
+#clientSearch {
+  font-family: "Roboto", sans-serif;
+  width: 85%;
+  height: 36px;
+  margin-left: 24px;
+  padding-left: 10px;
+  font-size: 17px;
+  background-color: var(--main-bg-color);
+  border-radius: 10px;
+  border: 0;
+  color: white;
 }

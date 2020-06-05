@@ -1,8 +1,8 @@
-import React from 'react';
-import logoUrl from './static/logo-header.png';
-import profilePicUrl from './static/welcome-back-james.png';
-import './AppHeader.css';
-import './AppHeaderMenu.css';
+import React from "react";
+import logoUrl from "./static/logo-header.png";
+import profilePicUrl from "./static/welcome-back-james.png";
+import "./AppHeader.css";
+import "./AppHeaderMenu.css";
 
 const AppHeader = ({ content }) => {
   let isActive = false;
@@ -18,21 +18,35 @@ const AppHeader = ({ content }) => {
     <>
       <section className="top-header"></section>
       <header className="App-header">
-        <div id="hamburger-menu" className="hamburger hamburger--arrow js-hamburger" onClick={toggleMenu}>
-          <div className="hamburger-box">
-            <div className="hamburger-inner"></div>
+        <section class="leftHeader">
+          <div
+            id="hamburger-menu"
+            className="hamburger hamburger--arrow js-hamburger"
+            onClick={toggleMenu}
+          >
+            <div className="hamburger-box">
+              <div className="hamburger-inner"></div>
+            </div>
           </div>
-        </div>
-        <img className="logo-header" src={logoUrl} alt="LUCENT logo" />
-        <div id="profile">
-          <img src={profilePicUrl} alt="James K" />
-        </div>
+          <img className="logo-header" src={logoUrl} alt="LUCENT logo" />
+        </section>
+        <section class="rightHeader">
+          <p id="placeHolder">Welcome back user</p>
+          <div class="userContainer">
+            <span class="userCircle"></span>
+          </div>
+          <div id="threeDotMenu" class="threeDot_container">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </section>
         <section className="client-menu" id="client-menu">
           {content}
         </section>
       </header>
     </>
-  )
+  );
 };
 
 export default AppHeader;
