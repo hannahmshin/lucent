@@ -2,9 +2,7 @@
   background-color: #212121;
   display: grid;
   grid-template: "leftHeader rightHeader";
-  /* flex-direction: row; */
   align-items: center;
-  /* justify-content: left; */
   font-size: calc(10px + 2vmin);
   color: FFF;
   height: 68px;
@@ -52,13 +50,6 @@
 
 #client-menu.change {
   z-index: 2;
-}
-
-#profile img {
-  width: 260px;
-  position: absolute;
-  right: 24px;
-  top: 30px;
 }
 
 .userContainer {
