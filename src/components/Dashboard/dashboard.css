@@ -26,6 +26,41 @@
   justify-content: center;
 }
 
+.arrow {
+  display: inline-block;
+  height: 12px;
+  position: relative;
+  width: 12px;
+  z-index: 9999;
+}
+
+.arrow::after {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-right-style: solid;
+  border-right-width: 2px;
+  content: "";
+  display: inline-block;
+  height: 8px;
+  left: 0;
+  position: absolute;
+  top: 7;
+  width: 8px;
+}
+
+.arrow.is-right {
+  -moz-transform: rotate(315deg);
+  -ms-transform: rotate(315deg);
+  -webkit-transform: rotate(315deg);
+  transform: rotate(315deg);
+}
+
+.arrowContainer {
+  display: inline-block;
+  position: absolute;
+  right: 31px;
+}
+
 #create {
   margin-top: 20px;
 }

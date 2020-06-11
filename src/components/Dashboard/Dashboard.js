@@ -44,6 +44,9 @@ function PatientCard({ patient, getSession }) {
     <div className="patientName-menu">
       <h3>
         {patient.firstName} {patient.lastInitial}
+        <section class="arrowContainer">
+          <span class="arrow is-right"></span>
+        </section>
       </h3>
       <span>Last updated 04/04/2020 | Last shared 04/01/2020</span>
     </div>
