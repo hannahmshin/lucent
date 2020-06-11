@@ -1,16 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { IoIosAdd, IoIosArrowForward } from "react-icons/io";
 import AppHeader from "../../AppHeader";
 
-import './dashboard.css'
+import "./dashboard.css";
+import "../../index.css";
 
 function Patient({ patient, getSession }) {
   return (
     <div className="patientName">
-      <h3>{patient.firstName} {patient.lastInitial}</h3>
+      <h3>
+        {patient.firstName} {patient.lastInitial}
+      </h3>
       <span>Last updated 04/04/2020 | Last shared 04/01/2020</span>
     </div>
-  )
+  );
 }
 
 function PatientList({ patients, setAdd, getSession, inMenu }) {
@@ -23,51 +26,74 @@ function PatientList({ patients, setAdd, getSession, inMenu }) {
       <div className="patientContainer">
         <div className="patientHeader">Activity</div>
         <div className="patientList">
-          {patients.map((patient) => (<Patient key={patient.id} patient={patient} getSession={getSession} />))}
+          {patients.map((patient) => (
+            <Patient
+              key={patient.id}
+              patient={patient}
+              getSession={getSession}
+            />
+          ))}
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 function PatientCard({ patient, getSession }) {
   return (
     <div className="patientName-menu">
-      <h3>{patient.firstName} {patient.lastInitial}</h3>
+      <h3>
+        {patient.firstName} {patient.lastInitial}
+        <section class="arrowContainer">
+          <span class="arrow is-right"></span>
+        </section>
+      </h3>
       <span>Last updated 04/04/2020 | Last shared 04/01/2020</span>
     </div>
-  )
+  );
 }
 
 function PatientMenu({ patients, getSession, setAdd }) {
   return (
     <div className="dashboard-menu">
-      <div className="addButtonContainer-menu">
-        <h2>Create Session</h2>
-        <IoIosAdd onClick={setAdd} size={32} />
-      </div>
+      <h2>Clients</h2>
+      <button className="btn" id="createClientBtn" onClick={setAdd}>
+        Create Client
+      </button>
+      <input
+        type="search"
+        id="clientSearch"
+        placeholder="Search Clients"
+      ></input>
+
       <div className="patientContainer-menu">
         <div className="patientList-menu">
-          {patients.map((patient) => (<PatientCard key={patient.id} patient={patient} getSession={getSession} />))}
+          {patients.map((patient) => (
+            <PatientCard
+              key={patient.id}
+              patient={patient}
+              getSession={getSession}
+            />
+          ))}
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 function AddPatient({ addPatient, setAdd }) {
-  const [firstName, setFirstName] = useState('');
-  const [lastInitial, setLastInitial] = useState('');
+  const [firstName, setFirstName] = useState("");
+  const [lastInitial, setLastInitial] = useState("");
 
   function onSubmit(e) {
     e.preventDefault();
-    setAdd(false)
-    addPatient(firstName, lastInitial)
+    setAdd(false);
+    addPatient(firstName, lastInitial);
   }
 
   return (
     <div className="addPatient">
-      <form className="patientForm" onSubmit={onSubmit} >
+      <form className="patientForm" onSubmit={onSubmit}>
         <input
           id="name"
           type="text"
@@ -85,7 +111,7 @@ function AddPatient({ addPatient, setAdd }) {
         </button>
       </form>
     </div>
-  )
+  );
 }
 
 function Dashboard({ addPatient, patients, getSession }) {
@@ -93,10 +119,26 @@ function Dashboard({ addPatient, patients, getSession }) {
 
   return (
     <>
-      <AppHeader content={<PatientMenu getSession={getSession} patients={patients} setAdd={() => setAdd(false)} />} />
-      {add ? <AddPatient addPatient={addPatient} setAdd={() => setAdd(false)} /> : <PatientList setAdd={() => setAdd(true)} patients={patients} getSession={getSession} />}
+      <AppHeader
+        content={
+          <PatientMenu
+            getSession={getSession}
+            patients={patients}
+            setAdd={() => setAdd(false)}
+          />
+        }
+      />
+      {add ? (
+        <AddPatient addPatient={addPatient} setAdd={() => setAdd(false)} />
+      ) : (
+        <PatientList
+          setAdd={() => setAdd(true)}
+          patients={patients}
+          getSession={getSession}
+        />
+      )}
     </>
-  )
+  );
 }
 
 export default Dashboard;
