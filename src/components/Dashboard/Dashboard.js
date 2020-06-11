@@ -53,17 +53,16 @@ function PatientCard({ patient, getSession }) {
 function PatientMenu({ patients, getSession, setAdd }) {
   return (
     <div className="dashboard-menu">
-      <div className="addButtonContainer-menu">
-        <h2>Clients</h2>
-        <button className="btn" id="createClientBtn" onClick={setAdd}>
-          Create Client
-        </button>
-        <input
-          type="search"
-          id="clientSearch"
-          placeholder="Search Clients"
-        ></input>
-      </div>
+      <h2>Clients</h2>
+      <button className="btn" id="createClientBtn" onClick={setAdd}>
+        Create Client
+      </button>
+      <input
+        type="search"
+        id="clientSearch"
+        placeholder="Search Clients"
+      ></input>
+
       <div className="patientContainer-menu">
         <div className="patientList-menu">
           {patients.map((patient) => (
