@@ -26,12 +26,17 @@
   animation: ani 4s infinite;
 }
 
-.shape.circle {
+.circle {
   width: 80px;
   height: 80px;
 	border-radius: 80px;
 }
 
+.square {
+  width: 80px;
+  height: 80px;
+	border-radius: 0;
+}
 
 @keyframes ani {
   0% {
@@ -61,7 +66,7 @@ nav button {
 
 #settings-configure {
   background-color: #262626;
-  padding: 26px;
+  padding: 66px 26px 26px 26px;
   width: 370px;
 }
 
