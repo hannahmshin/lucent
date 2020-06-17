@@ -6,7 +6,7 @@ import {
   Route,
 } from "react-router-dom";
 import Login from './components/UserPanel/Login';
-import Settings from "./components/Settings";
+import Settings from "./components/Settings/Settings";
 import Preview from "./components/Preview";
 import Share from './components/Share';
 import PatientPortal from './components/PatientPortal';

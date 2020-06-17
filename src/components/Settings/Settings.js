@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import AppHeader from "../AppHeader";
+import AppHeader from "../../AppHeader";
 import Slider from './Slider.js';
-import { loadScript } from '../utils.js';
+import { loadScript } from '../../utils.js';
 import './Settings.css';
 import './Slider.css';
 
@@ -111,7 +111,7 @@ function SettingsMenu(props) {
         </section>
       </section>
 
-      {loadScript("./SliderConfig.js")}
+      {loadScript("../../SliderConfig.js")}
     </section>
   );
 }
