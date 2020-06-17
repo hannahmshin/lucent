@@ -136,6 +136,14 @@
   padding-top: 30px;
 }
 
+.patientName-menu {
+  padding: 0 auto;
+}
+
+.patientName-menu:hover {
+  background-color: #212121;
+}
+
 .patientName h3 {
   font-weight: bold;
   margin-bottom: 8px;
@@ -147,5 +155,5 @@
 }
 
 #placeHolder {
-  padding-right: 18px;
+  padding-right: 14px;
 }

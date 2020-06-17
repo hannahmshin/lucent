@@ -3,7 +3,7 @@
   display: grid;
   grid-template: "leftHeader rightHeader";
   align-items: center;
-  font-size: calc(10px + 2vmin);
+  font-size: 14px;
   color: #fff;
   height: 68px;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.12), 0 4px 4px 0 rgba(0, 0, 0, 0.24);
