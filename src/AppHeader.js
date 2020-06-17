@@ -18,7 +18,7 @@ const AppHeader = ({ content }) => {
     <>
       <section className="top-header"></section>
       <header className="App-header">
-        <section class="leftHeader">
+        <section className="leftHeader">
           <div
             id="hamburger-menu"
             className="hamburger hamburger--arrow js-hamburger"
@@ -30,12 +30,12 @@ const AppHeader = ({ content }) => {
           </div>
           <img className="logo-header" src={logoUrl} alt="LUCENT logo" />
         </section>
-        <section class="rightHeader">
+        <section className="rightHeader">
           <p id="placeHolder">Welcome back user</p>
-          <div class="userContainer">
-            <span class="userCircle"></span>
+          <div className="userContainer">
+            <span className="userCircle"></span>
           </div>
-          <div id="threeDotMenu" class="threeDot_container">
+          <div id="threeDotMenu" className="threeDot_container">
             <span></span>
             <span></span>
             <span></span>
