@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from "react-router-dom";
 import AppHeader from "../../AppHeader";
 import Slider from './Slider.js';
 import { loadScript } from '../../utils.js';
 import './Settings.css';
 import './Slider.css';
+
+let lightElem = null
+const shapes = ['circle', 'square']
+
+// adds shape class to light element
+const changeShape = (elem, shape) => {
+  shapes.forEach(shape => elem.current.classList.remove(shape))
+  elem.current.classList.add(shape)
+}
 
 function SettingsMenu(props) {
 
@@ -25,22 +34,8 @@ function SettingsMenu(props) {
     lightSpeed += 1;
     lightElem.style = 'animation: ani ' + lightSpeed + 's infinite';
   }
-
-  const changeShape = (className) => {
-    let lightElem = document.getElementById("elem");
-    let elemStyle = lightElem.style.cssText.split(';');
-
-    if (className.indexOf('square') > -1) {
-      elemStyle.push('border-radius: 0');
-    }
-
-    if (className.indexOf('circle') > -1) {
-      elemStyle.push('border-radius: 80px');
-    }
-
-    lightElem.style.cssText = elemStyle.join(';')
-  }
-
+  
+  // configures showing selection and what shape shoudl be set
   const onClickConfigure = (event) => {
     const el = event.target;
 
@@ -50,7 +45,8 @@ function SettingsMenu(props) {
     });
 
     el.classList.add('selected');
-    changeShape(el.className)
+    const shape = el.getAttribute('data-shape')
+    changeShape(lightElem, shape)
   }
 
   const onClickColor = (event, update) => {
@@ -65,9 +61,8 @@ function SettingsMenu(props) {
 
         <section className="configuration" id="shape">
           <h3>Shape</h3>
-          <span className="shape-circle selected" onClick={onClickConfigure}></span>
-          <span className="shape-square" onClick={onClickConfigure}></span>
-          <span className="shape-triangle"></span>
+          <span className="shape-circle selected" data-shape="circle" onClick={onClickConfigure}></span>
+          <span className="shape-square" data-shape="square" onClick={onClickConfigure}></span>
         </section>
 
         <section className="configuration" id="color">
@@ -116,15 +111,22 @@ function SettingsMenu(props) {
   );
 }
 
+
+// Settings component
 function Settings(props) {
   const {color, size} = props.state
+  lightElem = useRef(null)
+
+  useEffect(() => {
+    changeShape(lightElem, 'circle')
+  })
 
   return (
     <>
       <AppHeader  content={<SettingsMenu {...props}/>}/>
       <div className="container">
         <div className="path">
-          <span id="elem" className="shape circle trail" style={{backgroundColor: color}}></span>
+          <span id="elem" ref={lightElem} className="shape trail" style={{backgroundColor: color}}></span>
         </div>
       </div>
     </>
