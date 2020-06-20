@@ -35,21 +35,18 @@ function SettingsMenu(props) {
   };
 
   // configures showing selection and what shape shoudl be set
-  const onClickConfigure = (event) => {
+  const highlightSelector = (event) => {
     const el = event.target;
 
-    const shapes = el.parentNode.querySelectorAll("span");
-    shapes.forEach((item) => {
+    const settingsItems = el.parentNode.querySelectorAll("span");
+    settingsItems.forEach((item) => {
       item.classList.remove("selected");
     });
-
     el.classList.add("selected");
-    const shape = el.getAttribute("data-shape");
-    changeShape(lightElem, shape);
   };
 
   const onClickColor = (event, update) => {
-    onClickConfigure(event);
+    highlightSelector(event);
     updateSettings(update);
   };
 
@@ -63,12 +60,12 @@ function SettingsMenu(props) {
           <span
             className="shape-circle selected"
             data-shape="circle"
-            onClick={onClickConfigure}
+            onClick={highlightSelector}
           ></span>
           <span
             className="shape-square"
             data-shape="square"
-            onClick={onClickConfigure}
+            onClick={highlightSelector}
           ></span>
         </section>
 
@@ -143,7 +140,7 @@ function Settings(props) {
   useEffect(() => {
     changeShape(lightElem, "circle");
     toggleMenu();
-  });
+  }, []);
 
   return (
     <>
