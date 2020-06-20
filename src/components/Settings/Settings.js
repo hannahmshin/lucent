@@ -60,12 +60,18 @@ function SettingsMenu(props) {
           <span
             className="shape-circle selected"
             data-shape="circle"
-            onClick={highlightSelector}
+            onClick={(event) => {
+              highlightSelector(event);
+              changeShape(lightElem, "circle");
+            }}
           ></span>
           <span
             className="shape-square"
             data-shape="square"
-            onClick={highlightSelector}
+            onClick={(event) => {
+              highlightSelector(event);
+              changeShape(lightElem, "square");
+            }}
           ></span>
         </section>
 
