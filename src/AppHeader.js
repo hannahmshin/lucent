@@ -4,15 +4,15 @@ import profilePicUrl from "./static/welcome-back-james.png";
 import "./AppHeader.css";
 import "./AppHeaderMenu.css";
 
+const toggleMenu = (event) => {
+  const el = document.getElementById("hamburger-menu");
+  const menuElement = document.getElementById("client-menu");
+  el.classList.toggle("is-active");
+  menuElement.classList.toggle("change");
+};
+
 const AppHeader = ({ content }) => {
   let isActive = false;
-
-  const toggleMenu = (event) => {
-    const el = document.getElementById("hamburger-menu");
-    const menuElement = document.getElementById("client-menu");
-    el.classList.toggle("is-active");
-    menuElement.classList.toggle("change");
-  };
 
   return (
     <>
@@ -49,4 +49,5 @@ const AppHeader = ({ content }) => {
   );
 };
 
+export { toggleMenu };
 export default AppHeader;
