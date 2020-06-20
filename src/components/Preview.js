@@ -1,13 +1,13 @@
-import React from 'react';
+import React from "react";
 import AppHeader from "../AppHeader";
-import Slider from './Settings/Slider.js';
-import { loadScript } from '../utils.js';
-import './Preview.css';
-import './Settings/Settings.css';
-import './Settings/Slider.css';
+import Slider from "./Settings/Slider.js";
+import { loadScript } from "../utils.js";
+import "./Preview.css";
+import "./Settings/Settings.css";
+import "./Settings/Slider.css";
 
 function Preview(props) {
-  const {color, size} = props.state
+  const { color, size } = props.state;
 
   return (
     <>
@@ -15,10 +15,14 @@ function Preview(props) {
       <div id="preview">
         <div className="container">
           <div className="path">
-            <span id="elem" className="shape circle trail" style={{backgroundColor: color}}></span>
+            <span
+              id="elem"
+              className="shape circle trail"
+              style={{ backgroundColor: color }}
+            ></span>
           </div>
         </div>
-      {loadScript("./SliderConfig.js")}
+        {loadScript("./SliderConfig.js")}
       </div>
     </>
   );
