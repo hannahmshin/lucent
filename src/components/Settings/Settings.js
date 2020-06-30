@@ -7,12 +7,18 @@ import "./Settings.css";
 import "./Slider.css";
 
 let lightElem = null;
-const shapes = ["circle", "square"];
+const SHAPES = ["circle", "square"];
+const COLORS = ["red", "blue", "yellow", "green", "black", "grey", "white"];
 
 // adds shape class to light element
 const changeShape = (elem, shape) => {
-  shapes.forEach((shape) => elem.current.classList.remove(shape));
+  SHAPES.forEach((shape) => elem.current.classList.remove(shape));
   elem.current.classList.add(shape);
+};
+
+const changeColor = (elem, color) => {
+  COLORS.forEach((color) => elem.current.classList.remove(color));
+  elem.current.classList.add(color);
 };
 
 function SettingsMenu(props) {
@@ -34,7 +40,7 @@ function SettingsMenu(props) {
     lightElem.style = "animation: ani " + lightSpeed + "s infinite";
   };
 
-  // configures showing selection and what shape shoudl be set
+  // configures showing selection and what shape should be set
   const highlightSelector = (event) => {
     const el = event.target;
 
@@ -79,8 +85,9 @@ function SettingsMenu(props) {
           <h3>Color</h3>
           <span
             className="shape-circle white selected"
-            onClick={(e) => {
-              onClickColor(e, { color: "#fff" });
+            onClick={(event) => {
+              highlightSelector(event);
+              changeColor(lightElem, "white");
             }}
           ></span>
           <span className="shape-circle grey"></span>
@@ -89,8 +96,9 @@ function SettingsMenu(props) {
           <span className="shape-circle green"></span>
           <span
             className="shape-circle red"
-            onClick={(e) => {
-              onClickColor(e, { color: "#ff4848" });
+            onClick={(event) => {
+              highlightSelector(event);
+              changeColor(lightElem, "red");
             }}
           ></span>
           <span className="shape-circle black"></span>
@@ -145,6 +153,7 @@ function Settings(props) {
 
   useEffect(() => {
     changeShape(lightElem, "circle");
+    changeColor(lightElem, "white");
     toggleMenu();
   }, []);
 
@@ -153,12 +162,7 @@ function Settings(props) {
       <AppHeader content={<SettingsMenu {...props} />} />
       <div className="container">
         <div className="path">
-          <span
-            id="elem"
-            ref={lightElem}
-            className="shape trail"
-            style={{ backgroundColor: color }}
-          ></span>
+          <span id="elem" ref={lightElem} className="shape trail"></span>
         </div>
       </div>
     </>
