@@ -155,10 +155,16 @@ function Settings(props) {
   const { color, size, shape } = props.state;
   lightElem = useRef(null);
 
+  // runs whenever values in array change
   useEffect(() => {
     // use color and shape from properties passed into state
     changeShape(lightElem, shape);
     changeColor(lightElem, color);
+  }, [shape, color]);
+
+  // run only once after first render
+  useEffect(() => {
+    // @todo update menu api for open/close
     toggleMenu();
   }, []);
 
