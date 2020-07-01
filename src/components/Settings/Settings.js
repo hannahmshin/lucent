@@ -21,6 +21,14 @@ const changeColor = (elem, color) => {
   elem.current.classList.add(color);
 };
 
+function SettingsColor(props) {
+  const settingsColorHtml = COLORS.map((color) => {
+    return <span className={"shape-circle " + color}></span>;
+  });
+
+  return settingsColorHtml;
+}
+
 function SettingsMenu(props) {
   let lightSpeed = 2;
   const { color, size } = props.state;
@@ -85,6 +93,8 @@ function SettingsMenu(props) {
 
         <section className="configuration" id="color">
           <h3>Color</h3>
+          {<SettingsColor />}
+
           <span
             className="shape-circle white selected"
             onClick={(event) => {
