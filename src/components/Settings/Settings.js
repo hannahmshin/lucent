@@ -32,6 +32,24 @@ const highlightSelector = (event) => {
   el.classList.add("selected");
 };
 
+function SettingsShape(props) {
+  const { updateSettings } = props;
+  const settingsShapeHtml = SHAPES.map((shape, index) => {
+    return (
+      <span
+        className={"shape-" + shape}
+        onClick={(event) => {
+          highlightSelector(event);
+          changeShape(lightElem, shape);
+          updateSettings({ shape: shape });
+        }}
+      ></span>
+    );
+  });
+
+  return settingsShapeHtml;
+}
+
 function SettingsColor(props) {
   const { updateSettings } = props;
   const settingsColorHtml = COLORS.map((color, index) => {
@@ -81,26 +99,7 @@ function SettingsMenu(props) {
 
         <section className="configuration" id="shape">
           <h3>Shape</h3>
-          <span
-            className="shape-circle selected"
-            data-shape="circle"
-            onClick={(event) => {
-              highlightSelector(event);
-              changeShape(lightElem, "circle");
-              updateSettings({ shape: "circle" });
-            }}
-          ></span>
-          <span
-            className="shape-square"
-            data-shape="square"
-            onClick={(event) => {
-              highlightSelector(event);
-              changeShape(lightElem, "square");
-              updateSettings({ shape: "square" });
-            }}
-          ></span>
-
-          <span className="shape-triangle"></span>
+          {<SettingsShape {...props} />}
         </section>
 
         <section className="configuration" id="color">
