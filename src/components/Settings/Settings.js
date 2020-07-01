@@ -21,9 +21,30 @@ const changeColor = (elem, color) => {
   elem.current.classList.add(color);
 };
 
+// configures showing selection and what shape should be set
+const highlightSelector = (event) => {
+  const el = event.target;
+
+  const settingsItems = el.parentNode.querySelectorAll("span");
+  settingsItems.forEach((item) => {
+    item.classList.remove("selected");
+  });
+  el.classList.add("selected");
+};
+
 function SettingsColor(props) {
-  const settingsColorHtml = COLORS.map((color) => {
-    return <span className={"shape-circle " + color}></span>;
+  const { updateSettings } = props;
+  const settingsColorHtml = COLORS.map((color, index) => {
+    return (
+      <span
+        className={"shape-circle " + color}
+        onClick={(event) => {
+          highlightSelector(event);
+          changeColor(lightElem, color);
+          updateSettings({ color: color });
+        }}
+      ></span>
+    );
   });
 
   return settingsColorHtml;
@@ -46,17 +67,6 @@ function SettingsMenu(props) {
     let lightElem = document.getElementById("elem");
     lightSpeed += 1;
     lightElem.style = "animation: ani " + lightSpeed + "s infinite";
-  };
-
-  // configures showing selection and what shape should be set
-  const highlightSelector = (event) => {
-    const el = event.target;
-
-    const settingsItems = el.parentNode.querySelectorAll("span");
-    settingsItems.forEach((item) => {
-      item.classList.remove("selected");
-    });
-    el.classList.add("selected");
   };
 
   const onClickColor = (event, update) => {
@@ -89,33 +99,13 @@ function SettingsMenu(props) {
               updateSettings({ shape: "square" });
             }}
           ></span>
+
+          <span className="shape-triangle"></span>
         </section>
 
         <section className="configuration" id="color">
           <h3>Color</h3>
-          {<SettingsColor />}
-
-          <span
-            className="shape-circle white selected"
-            onClick={(event) => {
-              highlightSelector(event);
-              changeColor(lightElem, "white");
-              updateSettings({ color: "white" });
-            }}
-          ></span>
-          <span className="shape-circle grey"></span>
-          <span className="shape-circle blue"></span>
-          <span className="shape-circle yellow"></span>
-          <span className="shape-circle green"></span>
-          <span
-            className="shape-circle red"
-            onClick={(event) => {
-              highlightSelector(event);
-              changeColor(lightElem, "red");
-              updateSettings({ color: "red" });
-            }}
-          ></span>
-          <span className="shape-circle black"></span>
+          {<SettingsColor {...props} />}
         </section>
 
         <section className="configuration">
