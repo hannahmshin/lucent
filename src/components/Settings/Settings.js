@@ -69,6 +69,7 @@ function SettingsMenu(props) {
             onClick={(event) => {
               highlightSelector(event);
               changeShape(lightElem, "circle");
+              updateSettings({ shape: "circle" });
             }}
           ></span>
           <span
@@ -77,6 +78,7 @@ function SettingsMenu(props) {
             onClick={(event) => {
               highlightSelector(event);
               changeShape(lightElem, "square");
+              updateSettings({ shape: "square" });
             }}
           ></span>
         </section>
@@ -88,6 +90,7 @@ function SettingsMenu(props) {
             onClick={(event) => {
               highlightSelector(event);
               changeColor(lightElem, "white");
+              updateSettings({ color: "white" });
             }}
           ></span>
           <span className="shape-circle grey"></span>
@@ -99,6 +102,7 @@ function SettingsMenu(props) {
             onClick={(event) => {
               highlightSelector(event);
               changeColor(lightElem, "red");
+              updateSettings({ color: "red" });
             }}
           ></span>
           <span className="shape-circle black"></span>
@@ -148,12 +152,19 @@ function SettingsMenu(props) {
 
 // Settings component
 function Settings(props) {
-  const { color, size } = props.state;
+  const { color, size, shape } = props.state;
   lightElem = useRef(null);
 
+  // runs whenever values in array change
   useEffect(() => {
-    changeShape(lightElem, "circle");
-    changeColor(lightElem, "white");
+    // use color and shape from properties passed into state
+    changeShape(lightElem, shape);
+    changeColor(lightElem, color);
+  }, [shape, color]);
+
+  // run only once after first render
+  useEffect(() => {
+    // @todo update menu api for open/close
     toggleMenu();
   }, []);
 
