@@ -21,6 +21,53 @@ const changeColor = (elem, color) => {
   elem.current.classList.add(color);
 };
 
+// configures showing selection and what shape should be set
+const highlightSelector = (event) => {
+  const el = event.target;
+
+  const settingsItems = el.parentNode.querySelectorAll("span");
+  settingsItems.forEach((item) => {
+    item.classList.remove("selected");
+  });
+  el.classList.add("selected");
+};
+
+function SettingsShape(props) {
+  const { updateSettings } = props;
+  const settingsShapeHtml = SHAPES.map((shape, index) => {
+    return (
+      <span
+        className={"shape-" + shape}
+        onClick={(event) => {
+          highlightSelector(event);
+          changeShape(lightElem, shape);
+          updateSettings({ shape: shape });
+        }}
+      ></span>
+    );
+  });
+
+  return settingsShapeHtml;
+}
+
+function SettingsColor(props) {
+  const { updateSettings } = props;
+  const settingsColorHtml = COLORS.map((color, index) => {
+    return (
+      <span
+        className={"shape-circle " + color}
+        onClick={(event) => {
+          highlightSelector(event);
+          changeColor(lightElem, color);
+          updateSettings({ color: color });
+        }}
+      ></span>
+    );
+  });
+
+  return settingsColorHtml;
+}
+
 function SettingsMenu(props) {
   let lightSpeed = 2;
   const { color, size } = props.state;
@@ -40,17 +87,6 @@ function SettingsMenu(props) {
     lightElem.style = "animation: ani " + lightSpeed + "s infinite";
   };
 
-  // configures showing selection and what shape should be set
-  const highlightSelector = (event) => {
-    const el = event.target;
-
-    const settingsItems = el.parentNode.querySelectorAll("span");
-    settingsItems.forEach((item) => {
-      item.classList.remove("selected");
-    });
-    el.classList.add("selected");
-  };
-
   const onClickColor = (event, update) => {
     highlightSelector(event);
     updateSettings(update);
@@ -63,49 +99,12 @@ function SettingsMenu(props) {
 
         <section className="configuration" id="shape">
           <h3>Shape</h3>
-          <span
-            className="shape-circle selected"
-            data-shape="circle"
-            onClick={(event) => {
-              highlightSelector(event);
-              changeShape(lightElem, "circle");
-              updateSettings({ shape: "circle" });
-            }}
-          ></span>
-          <span
-            className="shape-square"
-            data-shape="square"
-            onClick={(event) => {
-              highlightSelector(event);
-              changeShape(lightElem, "square");
-              updateSettings({ shape: "square" });
-            }}
-          ></span>
+          {<SettingsShape {...props} />}
         </section>
 
         <section className="configuration" id="color">
           <h3>Color</h3>
-          <span
-            className="shape-circle white selected"
-            onClick={(event) => {
-              highlightSelector(event);
-              changeColor(lightElem, "white");
-              updateSettings({ color: "white" });
-            }}
-          ></span>
-          <span className="shape-circle grey"></span>
-          <span className="shape-circle blue"></span>
-          <span className="shape-circle yellow"></span>
-          <span className="shape-circle green"></span>
-          <span
-            className="shape-circle red"
-            onClick={(event) => {
-              highlightSelector(event);
-              changeColor(lightElem, "red");
-              updateSettings({ color: "red" });
-            }}
-          ></span>
-          <span className="shape-circle black"></span>
+          {<SettingsColor {...props} />}
         </section>
 
         <section className="configuration">
