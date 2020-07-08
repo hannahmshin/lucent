@@ -21,15 +21,13 @@ const changeColor = (elem, color) => {
   elem.current.classList.add(color);
 };
 
-// configures showing selection and what shape should be set
-const highlightSelector = (event) => {
-  const el = event.target;
-
-  const settingsItems = el.parentNode.querySelectorAll("span");
+// configures showing selection in the DOM in settings menus
+const highlightSelector = (target) => {
+  const settingsItems = target.parentNode.querySelectorAll("span");
   settingsItems.forEach((item) => {
     item.classList.remove("selected");
   });
-  el.classList.add("selected");
+  target.classList.add("selected");
 };
 
 function SettingsShape(props) {
@@ -37,9 +35,9 @@ function SettingsShape(props) {
   const settingsShapeHtml = SHAPES.map((shape, index) => {
     return (
       <span
-        className={"shape-" + shape}
+        className={"shape-" + shape + " " + shape}
         onClick={(event) => {
-          highlightSelector(event);
+          highlightShape(shape);
           changeShape(lightElem, shape);
           updateSettings({ shape: shape });
         }}
@@ -50,6 +48,28 @@ function SettingsShape(props) {
   return settingsShapeHtml;
 }
 
+function highlightColor(color) {
+  const nodes = document.querySelectorAll("#color span");
+
+  // actual element in DOM that has the class on it
+  const target = Array.from(nodes).filter((node) =>
+    node.classList.contains(color)
+  )[0];
+
+  highlightSelector(target);
+}
+
+function highlightShape(shape) {
+  const nodes = document.querySelectorAll("#shape span");
+
+  // actual element in DOM that has the class on it
+  const target = Array.from(nodes).filter((node) =>
+    node.classList.contains(shape)
+  )[0];
+
+  highlightSelector(target);
+}
+
 function SettingsColor(props) {
   const { updateSettings } = props;
   const settingsColorHtml = COLORS.map((color, index) => {
@@ -57,7 +77,7 @@ function SettingsColor(props) {
       <span
         className={"shape-circle " + color}
         onClick={(event) => {
-          highlightSelector(event);
+          highlightColor(color);
           changeColor(lightElem, color);
           updateSettings({ color: color });
         }}
@@ -159,6 +179,8 @@ function Settings(props) {
     // use color and shape from properties passed into state
     changeShape(lightElem, shape);
     changeColor(lightElem, color);
+    highlightColor(color);
+    highlightShape(shape);
   }, [shape, color]);
 
   // run only once after first render
