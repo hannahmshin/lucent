@@ -194,3 +194,17 @@ nav button {
   left: 16px;
   background-color: #fff;
 }
+
+/* // area for colors */
+
+.white {
+  background-color: #fff;
+}
+
+.red {
+  background-color: #ff4848;
+}
+
+.blue {
+  background-color: #0076ff;
+}
