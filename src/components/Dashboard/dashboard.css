@@ -70,6 +70,7 @@
   width: 89%;
   height: 36px;
   padding-left: 10px;
+  margin: 0 0 10px 10px;
   font-size: 17px;
   background-color: var(--main-bg-color);
   border-radius: 10px;
@@ -79,7 +80,7 @@
 
 #createClientBtn {
   font-size: 14px;
-  margin-left: 125px;
+  margin-left: 130px;
 }
 
 .dashboard {
@@ -91,19 +92,18 @@
 }
 
 .dashboard-menu {
-  margin: 75px 0 0 20px;
+  margin-top: 75px;
 }
 
 .dashboard-menu h2 {
   display: inline-block;
   font-weight: normal;
   font-size: 24px;
+  margin-left: 10px;
 }
 
 .patientContainer {
-  height: auto;
   padding: 30px;
-  text-align: left;
 }
 
 .patientForm {
@@ -122,7 +122,7 @@
   margin-bottom: 8px;
 }
 
-.patientList-menu span {
+.patientList-menu {
   display: block;
   font-size: 12px;
 }
@@ -132,8 +132,13 @@
   text-transform: capitalize;
 }
 
-.patientName:first-child {
-  padding-top: 30px;
+.patientName-menu {
+  padding: 2px 0 15px 10px;
+  cursor: pointer;
+}
+
+.patientName-menu:hover {
+  background-color: #212121;
 }
 
 .patientName h3 {
