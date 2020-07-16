@@ -46,6 +46,7 @@
   background-color: rgba(38, 38, 38, 1);
   z-index: -1;
   text-align: left;
+  padding-left: 10px;
 }
 
 #client-menu.change {
