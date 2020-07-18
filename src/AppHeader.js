@@ -1,14 +1,25 @@
 import React from "react";
+import gsap from "gsap";
 import logoUrl from "./static/logo-header.png";
 import profilePicUrl from "./static/welcome-back-james.png";
 import "./AppHeader.css";
 import "./AppHeaderMenu.css";
 
+const timeline = gsap.timeline({ defaults: { duration: 1, ease: "out" } });
+let isMenuOpen = false;
+
 const toggleMenu = (event) => {
   const el = document.getElementById("hamburger-menu");
-  const menuElement = document.getElementById("client-menu");
   el.classList.toggle("is-active");
-  menuElement.classList.toggle("change");
+  if (isMenuOpen === true) {
+    timeline.to("#client-menu", { x: "0%" });
+    isMenuOpen = false;
+    console.log(isMenuOpen);
+  } else {
+    timeline.to("#client-menu", { x: "100%" });
+    isMenuOpen = true;
+    console.log(isMenuOpen);
+  }
 };
 
 const AppHeader = ({ content }) => {
